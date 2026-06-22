@@ -5,8 +5,8 @@ public class BackGroundController : MonoBehaviour
     private bool isBlack = false;
 
     [SerializeField] private SpriteRenderer floor;
+    [SerializeField] private SpriteRenderer blocks;
 
-    
 
     void Update()
     {
@@ -18,13 +18,14 @@ public class BackGroundController : MonoBehaviour
             {
                 Camera.main.backgroundColor = Color.black;
                 floor.color = Color.white;
+                blocks.color = Color.white;
                
             }
             else
             {
                 Camera.main.backgroundColor = Color.white;
                 floor.color = Color.black;
-
+                blocks.color = Color.black;
             }
         }
     }
