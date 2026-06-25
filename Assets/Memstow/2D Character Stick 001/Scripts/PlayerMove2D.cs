@@ -20,6 +20,7 @@ namespace memstow
         private bool fallingIs = false;
 
         [SerializeField] private Rigidbody2D rb;
+        [SerializeField] private GameObject thorn;
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private Collider2D cb;  // collider box
@@ -184,6 +185,13 @@ namespace memstow
                     localScale.x *= -1.0f;
                     transform.localScale = localScale;
                 }
+            }
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject == thorn)
+            {
+                Debug.Log("sinnda");
             }
         }
     }
