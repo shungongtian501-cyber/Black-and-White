@@ -130,6 +130,7 @@ namespace memstow
             }
 
             Flip();
+            FreeFall();
         }
 
         private void FixedUpdate()
@@ -191,7 +192,17 @@ namespace memstow
         {
             if (collision.gameObject == thorn)
             {
-                Debug.Log("sinnda");
+                Debug.Log("棘に刺さった");
+                Time.timeScale = 0;
+            }
+        }
+
+        private void FreeFall()
+        {
+            if(this.transform.position.y <= -5f)
+            {
+                Time.timeScale = 0;
+                Debug.Log("落ちた");
             }
         }
     }
