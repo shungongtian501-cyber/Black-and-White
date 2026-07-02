@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - thorn
+  - Block
   layers:
   - Default
   - TransparentFX

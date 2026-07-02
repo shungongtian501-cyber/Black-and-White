@@ -190,10 +190,10 @@ namespace memstow
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject == thorn)
+            if (collision.gameObject.CompareTag("thorn"))
             {
                 Debug.Log("棘に刺さった");
-                Time.timeScale = 0;
+                FindFirstObjectByType<GameManager>().GameOver();
             }
         }
 
@@ -201,7 +201,7 @@ namespace memstow
         {
             if(this.transform.position.y <= -5f)
             {
-                Time.timeScale = 0;
+                FindFirstObjectByType<GameManager>().GameOver();
                 Debug.Log("落ちた");
             }
         }
