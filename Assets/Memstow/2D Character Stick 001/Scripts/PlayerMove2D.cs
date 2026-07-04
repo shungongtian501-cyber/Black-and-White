@@ -205,6 +205,13 @@ namespace memstow
                 Debug.Log("落ちた");
             }
         }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Goal"))
+            {
+                FindFirstObjectByType<GameManager>().GameClear();
+            }
+        }
     }
 
 }   // end of memstow namespace
