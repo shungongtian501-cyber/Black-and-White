@@ -7,7 +7,7 @@ namespace memstow
     public class PlayerMove2D : MonoBehaviour
     {
         // Player Movement 2D as in up/down and right/left
-
+        public bool canMove = false;
         private float horizontal;
         public float speedWalk = 8f;  // The speed for walking
         private float speedRunFactor = 2f;  // The factor to be applied to the walk speed for running
@@ -35,6 +35,7 @@ namespace memstow
         // Update is called once per frame
         void Update()
         {
+            if (!canMove) return;
             Debug.Log(IsGrounded());
             bool isGrounded = IsGrounded();
 
