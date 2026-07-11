@@ -1,35 +1,47 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class BackGroundController : MonoBehaviour
 {
     private bool isBlack = false;
-    [SerializeField] private SpriteRenderer floor;
-    [SerializeField] private SpriteRenderer block;
-    [SerializeField] private SpriteRenderer thorn;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             isBlack = !isBlack;
+
+            GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+
             if (isBlack)
             {
                 Camera.main.backgroundColor = Color.black;
-                floor.color = Color.white;
-                //block.color = Color.white;
-                //thorn.color = Color.white;
+
+                ChangeColor("Floor", Color.white);
+                ChangeColor("Block", Color.white);
+                ChangeColor("thorn", Color.white);
             }
             else
             {
-                Camera.main.backgroundColor= Color.white;
-                floor.color = Color.black;
-               // block.color = Color.black;
-               // thorn.color = Color.black;
+                Camera.main.backgroundColor = Color.white;
+
+                ChangeColor("Floor", Color.black);
+                ChangeColor("Block", Color.black);
+                ChangeColor("thorn", Color.black);
             }
-            
+        }
+    }
+    private void ChangeColor(string tag, Color color)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject obj in objects)
+        {
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                sr.color = color;
+            }
         }
     }
 }
