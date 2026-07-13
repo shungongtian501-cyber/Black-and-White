@@ -13,7 +13,7 @@ public class TimerManager : MonoBehaviour
     void Start()
     {
         currentTime = timeLimit;
-        timerText.text = currentTime.ToString("F1");
+        timerText.text = "Time " + currentTime.ToString("F1");
     }
 
     void Update()
@@ -29,7 +29,7 @@ public class TimerManager : MonoBehaviour
             isRunning = false;
         }
 
-        timerText.text = currentTime.ToString("F1");
+        timerText.text = "Time " + currentTime.ToString("F1");
     }
 
     public void StartTimer()

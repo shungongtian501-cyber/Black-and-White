@@ -24,7 +24,7 @@ public class BackGroundController : MonoBehaviour
 
                 ChangeColor("Floor", Color.white);
                 ChangeColor("Block", Color.white);
-                ChangeColor("thorn", Color.white);
+                //ChangeColor("thorn", Color.white);
                 ChangeColor("Text", Color.white);
                 ChangeColor("TimeText", Color.white);
             }
@@ -34,7 +34,7 @@ public class BackGroundController : MonoBehaviour
 
                 ChangeColor("Floor", Color.black);
                 ChangeColor("Block", Color.black);
-                ChangeColor("thorn", Color.black);
+                //ChangeColor("thorn", Color.black);
                 ChangeColor("Text", Color.black);
                 ChangeColor("TimeText", Color.black);
             }
