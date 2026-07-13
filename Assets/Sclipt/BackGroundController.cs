@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackGroundController : MonoBehaviour
 {
@@ -6,8 +8,12 @@ public class BackGroundController : MonoBehaviour
 
     void Update()
     {
+
+        if (!GameManager.IsPlaying) return;
+
         if (Input.GetKeyDown(KeyCode.R))
         {
+
             isBlack = !isBlack;
 
             GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
@@ -19,6 +25,8 @@ public class BackGroundController : MonoBehaviour
                 ChangeColor("Floor", Color.white);
                 ChangeColor("Block", Color.white);
                 ChangeColor("thorn", Color.white);
+                ChangeColor("Text", Color.white);
+                ChangeColor("TimeText", Color.white);
             }
             else
             {
@@ -27,6 +35,8 @@ public class BackGroundController : MonoBehaviour
                 ChangeColor("Floor", Color.black);
                 ChangeColor("Block", Color.black);
                 ChangeColor("thorn", Color.black);
+                ChangeColor("Text", Color.black);
+                ChangeColor("TimeText", Color.black);
             }
         }
     }
@@ -36,12 +46,26 @@ public class BackGroundController : MonoBehaviour
 
         foreach (GameObject obj in objects)
         {
+            // SpriteRenderer
             SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
-
             if (sr != null)
             {
                 sr.color = color;
             }
+
+            // Legacy UI Text
+            Text text = obj.GetComponent<Text>();
+            if (text != null)
+            {
+                text.color = color;
+            }
+
+            // TextMeshPro
+TMP_Text timerText = obj.GetComponent<TMP_Text>();
+if (timerText != null)
+{
+    timerText.color = color;
+}
         }
     }
 }

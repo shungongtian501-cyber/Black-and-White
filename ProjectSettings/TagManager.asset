@@ -9,6 +9,9 @@ TagManager:
   - Block
   - Goal
   - Floor
+  - IntroduceText
+  - Text
+  - TimeText
   layers:
   - Default
   - TransparentFX

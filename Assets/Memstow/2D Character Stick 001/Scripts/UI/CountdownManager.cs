@@ -9,10 +9,21 @@ public class CountdownManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0f;
-        StartCoroutine(Countdown());
+
+        StartCoroutine(StartSequence());
+
+        SoundManager.Instance.PlayCountdown();
     }
 
-    IEnumerator Countdown()
+
+    public IEnumerator StartSequence()
+    {
+
+        yield return StartCoroutine(Countdown());
+    }
+
+
+    private IEnumerator Countdown()
     {
         countdownText.gameObject.SetActive(true);
 
@@ -27,13 +38,15 @@ public class CountdownManager : MonoBehaviour
 
         countdownText.text = "GO!";
 
+
         Time.timeScale = 1f;
 
-        // プレイヤーを動けるようにする
-        FindFirstObjectByType<memstow.PlayerMove2D>().canMove = true;
+        GameManager.IsPlaying = true;
 
-        // タイマー開始
         FindFirstObjectByType<TimerManager>().StartTimer();
+
+        BGMManager.Instance.PlayBGM();
+
 
         yield return new WaitForSecondsRealtime(0.5f);
 

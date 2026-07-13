@@ -7,7 +7,6 @@ namespace memstow
     public class PlayerMove2D : MonoBehaviour
     {
         // Player Movement 2D as in up/down and right/left
-        public bool canMove = false;
         private float horizontal;
         public float speedWalk = 8f;  // The speed for walking
         private float speedRunFactor = 2f;  // The factor to be applied to the walk speed for running
@@ -35,7 +34,8 @@ namespace memstow
         // Update is called once per frame
         void Update()
         {
-            if (!canMove) return;
+            if (!GameManager.IsPlaying) return;
+
             Debug.Log(IsGrounded());
             bool isGrounded = IsGrounded();
 
@@ -53,6 +53,7 @@ namespace memstow
             // Jump Update
             if (Input.GetButtonDown("Jump") && isGrounded && permitJump)
             {
+                SoundManager.Instance.PlayJump();
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
                 animator.SetBool("doJumpUp", true);
             }
@@ -136,9 +137,10 @@ namespace memstow
 
         private void FixedUpdate()
         {
-            if (permitRunWalk) // if permitted to run or walk, then update velicity
+            if (!GameManager.IsPlaying) return;
+
+            if (permitRunWalk)
             {
-                // Check if the button for running is pressed
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     rb.linearVelocity = new Vector2(horizontal * speedWalk * speedRunFactor, rb.linearVelocity.y);
@@ -148,7 +150,7 @@ namespace memstow
                     rb.linearVelocity = new Vector2(horizontal * speedWalk, rb.linearVelocity.y);
                 }
             }
-            else // Else set the velocity.x to 0 as the character may be performing an act that does not permit x-axis movement
+            else
             {
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
